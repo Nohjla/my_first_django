@@ -1,0 +1,316 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Thesis Repository</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		
+		
+        <link rel="stylesheet" href="{% static 'custom.css' %}">
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+		<link rel="stylesheet" href="{% static 'sample.css' %}">
+		
+		<!--google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+	
+	   <!--google material icon-->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+
+  </head>
+  <body>
+  
+
+
+<div class="wrapper">
+     
+	  <div class="body-overlay"></div>
+	 
+	 <!-------sidebar--design------------>
+	 
+	 <div id="sidebar">
+	    <div class="sidebar-header">
+		   <h3><span><i class="material-icons">folder_special</i>Thesis Repository</span></h3>
+		</div>
+		<ul class="list-unstyled component m-0">
+		  <li class="">
+		  <a href="{% url "base:dashboard" %}" class="dashboard"><i class="material-icons">dashboard</i>List of pending</a>
+		  </li>
+		   
+		  <li class="active">
+		  <a href="#" class=""><i class="material-icons">search</i>Reporsitory Search </a>
+		  </li>
+
+		  <li class="">
+			<a href="{% url "base:generate_url" %}" class=""><i class="material-icons">search</i>Generate URL </a>
+		   </li>
+		
+		</ul>
+	 </div>
+	 
+
+   
+      <div id="content">
+		  <div class="top-navbar">
+		     <div class="xd-topbar">
+			     <div class="row">
+				     <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+					    <div class="xp-menubar">
+						    <span class="material-icons text-white">signal_cellular_alt</span>
+						</div>
+					 </div>
+					 
+					 <div class="col-md-5 col-lg-3 order-3 order-md-2">
+					 </div>
+					 
+					 
+					 <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+					     <div class="xp-profilebar text-right">
+						    <nav class="navbar p-0">
+							   <ul class="nav navbar-nav flex-row ml-auto">
+							  
+							   <li class="dropdown nav-item">
+							     <a class="nav-link" href="#" data-toggle="dropdown">
+									<i class="material-icons">directions_walk</i>
+								 </a>
+								  <ul class="dropdown-menu small-menu">
+								     <li><a href="#">
+									 <span class="material-icons">person_outline</span>
+									 Profile
+									 </a></li>
+									 <li><a href="{% url "base:logout" %}">
+									 <span class="material-icons">logout</span>
+									 Logout
+									 </a></li>
+									 
+								  </ul>
+							   </li>
+							   
+							   
+							   </ul>
+							</nav>
+						 </div>
+					 </div>
+					 
+				 </div>
+				 
+				 <div class="xp-breadcrumbbar text-center">
+				    <h4 class="page-title">Reporsitory Search</h4>
+					<ol class="breadcrumb">
+					
+					  <li class="breadcrumb-item active" aria-curent="page">Reporsitory Search</li>
+					</ol>
+				 </div>
+				 
+				 
+			 </div>
+		  </div>
+
+		      <div class="main-content">
+
+			     <div class="row">
+                    {% block content%}
+                    <form action="" method="GET" id="sample">
+                        <header class="header">
+                            <div class="search">
+                                <input type="search" class="input-search" placeholder="search" name="q" value="{{ query }}" id="myText">
+                            <div class="actions">
+                                <span class="divider"></span>
+                                <span class="icon-action icon-search" style="background-image: url({% static 'search.svg' %})"></span>
+                             </div>
+                            </div>
+                        </header>
+                    </form>
+                    {% endblock content%}
+        
+				 
+			    </div>
+                {% for x in object %}
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="search-item">
+                        <div class="author">
+                            <img class="icon" src="{% static 'word.png' %}" alt="place">
+                            <div class="group">
+                                <div class="author-name">{{ query }}</div>
+                                <span class="author-link">{{ x.path }}</span>
+                            </div>
+                            
+                        </div>
+                        <div class="content">
+                            
+						<div class="accordion">
+							<div class="accordion-content">
+								<header>
+									<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal{{x.number}}">
+										View full text
+									  </button>
+									<span class="title">
+										{{ x.file }}
+										</span>
+									<i class="fa-solid fa-plus"></i>
+								</header>
+								<p class="description data-content">
+									{{ x.content }}
+								</p>
+								</div>
+						</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+			  </div>
+		  
+			  
+			  {% for y in object %}
+				
+			  
+				<!-- The Modal -->
+				<div class="modal fade" id="myModal{{y.number}}">
+				  <div class="modal-dialog modal-lg">
+					<div class="modal-content">
+					
+					  <!-- Modal Header -->
+					  <div class="modal-header">
+						<h4 class="modal-title">{{y.file}}</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					  </div>
+					  
+					  <!-- Modal body -->
+					  <div class="modal-body">
+						{{y.text}}
+					  </div>
+					  
+					  <!-- Modal footer -->
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					  </div>
+					  
+					</div>
+				  </div>
+				</div>
+				{% endfor %}
+			 
+		 
+	</div>
+   
+</div>
+
+
+
+<!-------complete html----------->
+
+
+
+
+
+  
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+   <script src="{% static 'popper.min.js' %}"></script>
+   <script src="{% static 'bootstrap.min.js' %}"></script>
+   <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+   <script type="text/javascript">
+	const accordionContent = document.querySelectorAll(".accordion-content");
+	accordionContent.forEach((item, index) => {
+		let header = item.querySelector("header");
+		header.addEventListener("click", () =>{
+			item.classList.toggle("open");
+			let description = item.querySelector(".description");
+			if(item.classList.contains("open")){
+				description.style.height = `${description.scrollHeight}px`; //scrollHeight property returns the height of an element including padding , but excluding borders, scrollbar or margin
+				item.querySelector("i").classList.replace("fa-plus", "fa-minus");
+			}else{
+				description.style.height = "0px";
+				item.querySelector("i").classList.replace("fa-minus", "fa-plus");
+			}
+			removeOpen(index); //calling the funtion and also passing the index number of the clicked header
+		})
+	})
+	function removeOpen(index1){
+		accordionContent.forEach((item2, index2) => {
+			if(index1 != index2){
+				item2.classList.remove("open");
+				let des = item2.querySelector(".description");
+				des.style.height = "0px";
+				item2.querySelector("i").classList.replace("fa-minus", "fa-plus");
+			}
+		})
+	}
+   </script>
+  
+  <script type="text/javascript">
+       $(document).ready(function(){
+	      $(".xp-menubar").on('click',function(){
+		    $("#sidebar").toggleClass('active');
+			$("#content").toggleClass('active');
+		  });
+		  
+		  $('.xp-menubar,.body-overlay').on('click',function(){
+		     $("#sidebar,.body-overlay").toggleClass('show-nav');
+		  });
+		  
+	   });
+  </script>
+  
+  <script language="JavaScript">
+	function highlightText(searchTerm) {
+		// Get all elements containing text
+		const elements = document.querySelectorAll(".data-content");
+		// Loop through each element
+		elements.forEach((element) => {
+		  const text = element.innerText;
+		  const regex = new RegExp(`(${searchTerm})`, "gi");
+		  // Check if the element's text contains the search term
+		  if (text.match(regex)) {
+			// Split the text into parts (matched and unmatched)
+			const parts = text.split(regex);
+			// Create a new HTML structure with the matched term highlighted
+			const highlightedText = parts
+			  .map((part) =>
+				part.match(regex)
+				  ? `<span style="background-color: yellow;">${part}</span>`
+				  : part
+			  )
+			  .join("");
+			// Replace the original text with the highlighted version
+			element.innerHTML = highlightedText;
+		  }
+		});
+	  }
+	  // Usage: Call the function with the search term you want to highlight
+  
+  const form = document.querySelector('form');
+  
+  form.addEventListener('keypress', function (event) {
+	if (event.keyCode === 13) {
+	  event.preventDefault();
+	  form.submit();
+	  console.log("success");
+	  
+	  console.log(text_search)
+	}
+  });
+  text_search = document.getElementById("myText").value
+  console.log(text_search);
+  highlightText(text_search);
+</script>
+
+
+
+  </body>
+  
+  </html>
+
+

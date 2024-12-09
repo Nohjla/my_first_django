@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+     <title> Button with Progress Bar | CodingLab </title> 
+    <link rel="stylesheet" href="{% static 'upload_form.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   </head>
+<body>
+    
+   <form method="post" enctype="multipart/form-data" id="myForm">
+      {% csrf_token %}
+      <input type="file" name="document" id="uploadBtn">
+      {% if url %}
+         <p>Uploaded file: <a href="{{url}}">{{url}}</a></p>
+      {% endif %}
+      <br>
+      <div class="button">
+         <div class="text-icon">
+           <i class="bx bx-cloud-upload"></i>
+           <span class="text">Upload File</span>
+         </div>
+       </div>
+   </form>
+     
+    <p style="color:red;">{{ sample }}</p> 
+ 
+   
+  <script>
+    setTimeout(function() {
+      window.location.reload();
+    }, 60000);
+    function checkFile() {
+      const fileInput = document.getElementById('uploadBtn');
+      if (fileInput.files.length > 0) {
+          return true;
+      } else {
+          return false;
+      }
+    }
+    const button = document.querySelector(".button"),
+    text = document.querySelector(".text");
+    button.addEventListener("click", ()=>{
+      if(checkFile() == false){
+        alert("Please select a file!")
+      } else {
+        button.classList.add("progress");
+        text.innerText = "Uploading...";
+        setTimeout(()=>{
+          button.classList.remove("progress"); //remove progress after 6s
+          text.innerText = "File uploaded";
+          setTimeout(function () {
+            const form = document.getElementById("myForm");
+            form.submit();
+          }, 1000);
+        },6000); //1000ms = 1s (6000 = 6s)
+      }
+    });
+  </script>
+</body>
+</html>

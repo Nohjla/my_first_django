@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+     <title> Button with Progress Bar | CodingLab </title> 
+    <link rel="stylesheet" href="{% static 'upload_form.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   </head>
+<body>
+    
+   <form method="get" >
+      {% csrf_token %}
+      
+     <h1> {{data}}</h1>
+   </form>
+    
+</body>
+</html>

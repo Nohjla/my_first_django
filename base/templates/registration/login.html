@@ -1,0 +1,62 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="container">
+        <div class="curved-shape animation"></div>
+        <div class="curved-shape2"></div>
+        <div class="form-box Login">
+            <h2 class="animation" style="--D:0; --S:21">Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-box animation" style="--D:1; --S:21">
+                    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" id="id_username" required>
+                    <label for="id_username">Username</labe>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-box animation" style="--D:2; --S:23">
+                    <input type="password" name="password" id="id_password" required>
+                    <label for="id_password">Password</labe>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="input-box animation" style="--D:3; --S:24">
+                    <button class="btn" type="submit">Login </button>
+                </div>
+                <div class="regi-link animation" style="--D:4; --S:25">
+                    <p>Don't have an account ? <a href="#" class="SignUpLink">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="info-content Login">
+            <h2 class="animation" style="--D:0; --S:20">Repository</h2>
+            <p class="animation" style="--D:1; --S:21">This system was created by ICT students</p>
+        </div>
+        <div class="form-box Register">
+            <h2 class="animation" style="--li:17; --S:0;">Sign Up</h2>
+            <form action="#">
+                <div class="input-box animation" style="--li:20; --S:3;">
+                    <p>Don't have an account ? <a href="{% url "base:authView" %}">Register Here.</a></p>
+                </div>
+                <div class="regi-link animation" style="--li:21; --S:4;">
+                    <p>Already have an account! <a href="#" class="SignInLink">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="info-content Register">
+            <h2 class="animation" style="--li:17; --S:0;">Repository</h2>
+            <p class="animation" style="--li:18; --S:1;">This system was created by ICT students</p>
+        </div>
+    </div>
+    
+    <script src="{% static 'login.js' %}"></script>
+</body>
+</html>
+
+
