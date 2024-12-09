@@ -33,8 +33,8 @@ def full_text(filename):
 
 def check_files(file_name):
     try:
-        files = os.listdir(os.path.join(BASE_DIR, 'media\\'))
-        files_path = os.path.join(BASE_DIR, 'media\\')
+        files = os.listdir(os.path.join(BASE_DIR, 'media'))
+        files_path = os.path.join(BASE_DIR, 'media')
         is_exist = False
         if file_name in files:
             is_exist = True
@@ -45,8 +45,8 @@ def check_files(file_name):
 
 def full_details_pending():
     try:
-        files = os.listdir(os.path.join(BASE_DIR, 'media\\'))
-        files_path = os.path.join(BASE_DIR, 'media\\')
+        files = os.listdir(os.path.join(BASE_DIR, 'media'))
+        files_path = os.path.join(BASE_DIR, 'media')
         arr = []
         for file in files:
             if 'pending' in file:
@@ -67,8 +67,8 @@ def full_details_pending():
 
 def full_details_approved():
     try:
-        files = os.listdir(os.path.join(BASE_DIR, 'media\\'))
-        files_path = os.path.join(BASE_DIR, 'media\\')
+        files = os.listdir(os.path.join(BASE_DIR, 'media'))
+        files_path = os.path.join(BASE_DIR, 'media')
         arr = []
         i = 0;
         for file in files:
@@ -93,8 +93,8 @@ def full_details_approved():
 
 def get_research(search):
     try:
-        files = os.listdir(os.path.join(BASE_DIR, 'media\\'))
-        files_path = os.path.join(BASE_DIR, 'media\\')
+        files = os.listdir(os.path.join(BASE_DIR, 'media'))
+        files_path = os.path.join(BASE_DIR, 'media')
         arr = []
         i = 0;
         for file in files:
