@@ -34,7 +34,6 @@ def full_text(filename):
 def check_files(file_name):
     try:
         files = os.listdir(os.path.join(BASE_DIR, 'media'))
-        files_path = os.path.join(BASE_DIR, 'media')
         is_exist = False
         if file_name in files:
             is_exist = True
@@ -50,7 +49,7 @@ def full_details_pending():
         arr = []
         for file in files:
             if 'pending' in file:
-                docx_path = files_path + '\\' + file
+                docx_path = os.path.join(files_path, 'file')
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = full_text(docx_path)
@@ -73,7 +72,7 @@ def full_details_approved():
         i = 0;
         for file in files:
             if 'approved' in file:
-                docx_path = files_path + '\\' + file
+                docx_path = os.path.join(files_path, 'file')
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = full_text(docx_path)
@@ -99,7 +98,7 @@ def get_research(search):
         i = 0;
         for file in files:
             if 'approved' in file:
-                docx_path = files_path + '\\' + file
+                docx_path = os.path.join(files_path, 'file')
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = get_text(docx_path, search)
