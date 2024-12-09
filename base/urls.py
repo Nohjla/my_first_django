@@ -1,5 +1,7 @@
 from django.urls import path, include
 from .views import authView, home, user_logout, upload_file, dashboard, generate_url_view, validate_url_view, thank_you, archive_and_delete_view
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -14,3 +16,6 @@ urlpatterns = [
     path('thank_you/', thank_you, name='thank_you'),
     path('archive-and-delete/', archive_and_delete_view, name='archive_and_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
