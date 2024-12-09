@@ -49,7 +49,7 @@ def full_details_pending():
         arr = []
         for file in files:
             if 'pending' in file:
-                docx_path = os.path.join(files_path, 'file')
+                docx_path = os.path.join(files_path, file)
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = full_text(docx_path)
@@ -72,7 +72,7 @@ def full_details_approved():
         i = 0;
         for file in files:
             if 'approved' in file:
-                docx_path = os.path.join(files_path, 'file')
+                docx_path = os.path.join(files_path, file)
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = full_text(docx_path)
@@ -98,7 +98,7 @@ def get_research(search):
         i = 0;
         for file in files:
             if 'approved' in file:
-                docx_path = os.path.join(files_path, 'file')
+                docx_path = os.path.join(files_path, file)
                 fs = FileSystemStorage()
                 file_path = fs.url(file)
                 text = get_text(docx_path, search)
