@@ -99,10 +99,8 @@ def upload_file(request):
     context = {}
     if request.method == 'POST':
         upload_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save('pending ' + upload_file.name, upload_file)
-        context['url'] = fs.url(name)
-        files_path = os.path.join(logic.BASE_DIR, 'media')
+        file_path = default_storage.save(f'uploads/{uploaded_file.name}', uploaded_file)
+        context['url'] = file_path
     return render(request, 'upload.html', context)
 
 def user_logout(request):
