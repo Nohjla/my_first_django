@@ -15,7 +15,4 @@ urlpatterns = [
     path('validate-url/', validate_url_view, name='validate_url'),
     path('thank_you/', thank_you, name='thank_you'),
     path('archive-and-delete/', archive_and_delete_view, name='archive_and_delete'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
