@@ -12,7 +12,7 @@ from django.urls import reverse
 from .utils import generate_signed_url, validate_signed_token, archive_and_delete_old_media_files
 BASE_DIR = Path(__file__).resolve().parent.parent
 import numpy as np
-
+file_storage = FileSystemStorage(location='/var/data/uploads')
 
 def archive_and_delete_view(request):
     # Archive and delete old files
@@ -98,10 +98,9 @@ def get_doc_details():
 def upload_file(request):
     context = {}
     if request.method == 'POST':
-        upload_file = request.FILES['document']
-        file_path = default_storage.save(f'uploads/{uploaded_file.name}', uploaded_file)
-        context['url'] = file_path
-    return render(request, 'upload.html', context)
+        file = request.FILES['file']
+        file_path = file_storage.save(file.name, file)
+    return render(request, 'upload.html', {'file_path': f'/media/uploads/{file.name}'})
 
 def user_logout(request):
     logout(request)
